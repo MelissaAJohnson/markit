@@ -4,23 +4,26 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.email_field :email, class: 'input-sm', autofocus: true, placeholder: 'Email' %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
   </div>
-  <br />
+
   <div class="field">
-    <%= f.password_field :password, class: 'input-sm', autocomplete: "off", placeholder: 'Password' %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
-      <%= @minimum_password_length %> characters minimum
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
   </div>
-  <br />
+
   <div class="field">
-    <%= f.password_field :password_confirmation, class: 'input-sm', autocomplete: "off", placeholder: "Password confirmation" %>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
-  <br />
+
   <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-success' %>
+    <%= f.submit "Sign up" %>
   </div>
 <% end %>
-<br />
-Already have an account? <%= render "devise/shared/links" %>
+
+<%= render "devise/shared/links" %>
