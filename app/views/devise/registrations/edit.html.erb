@@ -1,0 +1,43 @@
+<h2>Edit Profile</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <div class = "control-group">
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.email_field :email, class: 'input-sm', autofocus: true, placeholder: "Email address" %><br /><br />
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.password_field :password, class: 'input-sm', autocomplete: "off", placeholder: "Password" %>
+      <span class="help-inline">Leave blank if you don't want to change.
+        <% if @minimum_password_length %>
+          <%= @minimum_password_length %> characters minimum.<br />
+        <% end %>
+      </span><br />
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, class: 'input-sm', autocomplete: "off", placeholder: "Password confirmation" %>
+      <br /><br />
+    </div>
+
+    <div class="field">
+      <%= f.password_field :current_password, class: 'input-sm', autocomplete: "off", placeholder: "Current password" %>
+    </div>
+
+    <div class="actions">
+      <br /><%= f.submit "Update", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p><%= button_to "Cancel my account", registration_path(resource_name), class: 'btn', data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
