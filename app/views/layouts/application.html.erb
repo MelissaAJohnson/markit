@@ -2,13 +2,50 @@
 <html>
   <head>
     <title>MarkIt</title>
-    <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class = 'container'>
+      <br />
+
+      <% if user_signed_in? %>
+        <div class = 'nav navbar'>
+          <img src = '/images/MarkIt_logo_black.png'>
+          <div class = 'pull-right', style='text-align: bottom'>
+            Signed in as: <strong><%= current_user.email %></strong><br />
+            <%= link_to 'Edit Profile', edit_user_registration_path, :class => 'navbar-link' %>
+            | <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => 'navbar-link' %>
+          </div>
+          <hr />
+        </div>
+      <% end %>
+
+      <div class="flash">
+        <% if flash[:notice] %>
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+          </div>
+        <% elsif flash.now[:alert] %>
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash.now[:alert] %>
+          </div>
+        <% elsif flash[:alert] %>
+          <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
