@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+15.times do
+  Topic.create!(
+    title: Faker::Lorem.word,
+  )
+end
+topics = Topic.all
+
+puts "#{Topic.count} topics created"
