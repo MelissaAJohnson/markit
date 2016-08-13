@@ -1,2 +1,15 @@
-<h1>Topics#new</h1>
-<p>Find me in app/views/topics/new.html.erb</p>
+<h2>New Topic</h2>
+<p>Topics help you organize your bookmarks into logical groupings. Topic names should be:</p>
+<ul>
+  <li>Short - but longer than 5 letters</li>
+  <li>Descriptive</li>
+</ul>
+
+<%= form_for @topic do |f| %>
+  <div class = 'form-group'>
+    <%= f.text_field :title, class: 'form-control', placeholder: "Enter topic" %>
+    <br />
+    <%= f.submit "Save", class: 'btn btn-success' %>&nbsp;&nbsp;<%= link_to "Cancel", root_url %>
+  </div>
+
+<% end %>

@@ -1,2 +1,15 @@
-
-Signed In User home#index
+<div class = 'container'>
+  <div class = 'row'>
+    <%= link_to "+ New Topic", new_topic_path, class: 'btn btn-default' %>
+  </div>
+  <div class = 'row'>
+    <div class = 'col-md-8'>
+      <% @topics.each do |topic| %>
+        <h4>
+          <%= link_to topic.title, topic %>
+          <br />
+        </h4>
+      <% end %>
+    </div>
+  </div>
+</div>

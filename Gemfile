@@ -11,7 +11,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'listen'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.0'
 end
 
 gem 'sass-rails', '~> 5.0'
@@ -33,4 +33,5 @@ group :development, :test do
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'simplecov'
+  gem 'rails-controller-testing'
 end
