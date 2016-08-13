@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe TopicsController, type: :controller do
-  let(:title) { Faker::Lorem.word }
-  let(:user) { User.create!(email: 'member@example.com', password: 'helloworld') }
-  let (:my_topic) { Topic.create!(title: title, user: user) }
+  before do
+    @user = User.create!(email: 'member@example.com', password: 'helloworld', password_confirmation: 'helloworld')
+    @user.confirm
+    sign_in @user
+    @my_topic = Topic.create!(title: Faker::Lorem.word, user: @user)
+  end
 
   describe "GET #index" do
     it "returns http success" do
@@ -14,8 +17,18 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show, {id: my_topic.id}
+      get :show, {id: @my_topic.id}
       expect(response).to have_http_status(:success)
+    end
+
+    it "renders the #show view" do
+      get :show, {id: @my_topic.id}
+      expect(response).to render_template :show
+    end
+
+    it "assigns my_topic to @topic" do
+      get :show, {id: @my_topic.id}
+      expect(assigns(:topic)).to eq(@my_topic)
     end
   end
 
@@ -33,7 +46,7 @@ RSpec.describe TopicsController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit, {id: my_topic.id}
+      get :edit, {id: @my_topic.id}
       expect(response).to have_http_status(:success)
     end
   end

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :topic do
-    title "MyString"
-    user nil
+    title { Faker::Lorem.word }
+    user @user
   end
 end
