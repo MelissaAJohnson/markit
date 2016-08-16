@@ -1,2 +1,12 @@
-<p><%= link_to "#{bookmark.url}", bookmark.url %></p>
-<br />
+<p><%= link_to "#{bookmark.url}", bookmark.url %>&nbsp;&nbsp;
+  <%= link_to edit_topic_bookmark_path(@topic, bookmark) do %>
+    <span style = "font-size: 11pt">
+      <span class='has-tooltip' data-toggle='tooltip' title='Edit Bookmark'>
+        <span class = 'glyphicon glyphicon-pencil'></span>
+      </span>
+    </span>
+  <% end %>
+
+
+  <br />
+</p>

@@ -41,10 +41,30 @@ RSpec.describe BookmarksController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      get :edit
+    it "returns http redirect" do
+      get :edit, topic_id: @my_topic.id, id: @bookmark.id
       expect(response).to have_http_status(:success)
     end
   end
 
+  describe "PUT update" do
+    it "returns http redirect" do
+      url = Faker::Internet.url
+      put :update, topic_id: @my_topic.id, id: @bookmark.id, bookmark: {url: url}
+      expect(response).to redirect_to(@my_topic)
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "deletes the bookmark" do
+      delete :destroy, topic_id: @my_topic.id, id: @bookmark.id
+      count = Bookmark.where({id: @bookmark.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to topic" do
+      delete :destroy, topic_id: @my_topic.id, id: @bookmark.id
+      expect(response).to redirect_to topics_path
+    end
+  end
 end

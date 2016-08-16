@@ -15,7 +15,7 @@
   <h4>
     <% if @bookmarks.present? %>
       <br />
-      <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic_id: @topic.id } %>
+      <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic_id: @topic.id, bookmark: @bookmark} %>
     <% end %>
   </h4>
 </div>
