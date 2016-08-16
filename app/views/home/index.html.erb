@@ -1,15 +1,23 @@
 <div class = 'container'>
-  <div class = 'row'>
-    <%= link_to "+ New Topic", new_topic_path, class: 'btn btn-default' %>
+  <div class = 'col-md-8'>
+    <div class = 'row'>
+      <div class = 'col-md-8'>
+        <% @topics.each do |topic| %>
+          <h4>
+            # <%= link_to topic.title, topic %>
+            <br />
+          </h4>
+          <!-- unsure why bookmarks are not displaying -->
+          <% if @bookmarks.present? %>
+            <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic: topic } %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class = 'row'>
-    <div class = 'col-md-8'>
-      <% @topics.each do |topic| %>
-        <h4>
-          # <%= link_to topic.title, topic %>
-          <br />
-        </h4>
-      <% end %>
+  <div class = 'col-md-4'>
+    <div class = 'row'>
+      <%= link_to "+ New Topic", new_topic_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>

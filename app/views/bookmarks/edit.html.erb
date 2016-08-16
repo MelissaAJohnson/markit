@@ -1,2 +1,8 @@
-<h1>Bookmarks#edit</h1>
-<p>Find me in app/views/bookmarks/edit.html.erb</p>
+<h2>Edit Bookmark</h2>
+<%= form_for [@bookmark.topic, @bookmark] do |f| %>
+    <div class = 'form-group'>
+      <%= f.text_field :url, class: 'form-control', placeholder: "Enter URL" %>
+      <br />
+      <%= f.submit "Save", class: 'btn btn-success' %>&nbsp;&nbsp;<%= link_to "Cancel", :back %>
+    </div>
+<% end %>
