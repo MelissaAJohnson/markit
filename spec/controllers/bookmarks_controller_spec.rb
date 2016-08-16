@@ -64,7 +64,7 @@ RSpec.describe BookmarksController, type: :controller do
 
     it "redirects to topic" do
       delete :destroy, topic_id: @my_topic.id, id: @bookmark.id
-      expect(response).to redirect_to topics_path
+      expect(response).to redirect_to(@my_topic)
     end
   end
 end
