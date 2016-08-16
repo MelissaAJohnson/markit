@@ -5,16 +5,32 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# Create user
+User.create!(
+  email: 'member@markit.com',
+  password: 'helloworld',
+  confirmed_at: '2016-08-14'
+)
+users = User.all
 
 # Create Topics
-15.times do
+5.times do
   Topic.create!(
     title: Faker::Lorem.word,
-    user_id: 1
+    user: users.sample
   )
 end
 topics = Topic.all
 
-
+# Create Bookmarks
+15.times do
+  bookmark = Bookmark.create!(
+    topic: topics.sample,
+    url: Faker::Internet.url
+  )
+  bookmark.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
+end
+bookmarks = Bookmark.all
 
 puts "#{Topic.count} topics created"
+puts "#{Bookmark.count} bookmarks created"
