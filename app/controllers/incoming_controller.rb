@@ -10,7 +10,7 @@ class IncomingController < ApplicationController
     @topic = Topic.find_by(title: params[:subject])
 
     # Assign the url to a variable after retreiving it from params["body-plain"]
-    @url params[:subject]
+    @url = params["body-plain"]
 
     # Check if user is nil, if so, create and save a new user
     if @user.nil?
