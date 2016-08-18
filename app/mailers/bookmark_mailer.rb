@@ -1,2 +1,0 @@
-class BookmarkMailer < ApplicationMailer
-end
