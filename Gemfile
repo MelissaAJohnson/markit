@@ -24,6 +24,7 @@ gem 'pry'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'pg'
+gem 'bootswatch-rails'
 
 group :development, :test do
   gem 'byebug'
