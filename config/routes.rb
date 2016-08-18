@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :bookmarks, except: :index
   end
 
-  root to: 'home#index'
+  root 'home#index'
+
+  post :incoming, to: 'incoming#create'
 
 end
