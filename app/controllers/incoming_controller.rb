@@ -17,11 +17,13 @@ class IncomingController < ApplicationController
     # Check if user is nil, if so, create and save a new user
     if @user.nil?
       @user = User.create(email: params[:sender], password: 'helloworld')
+      @user.save
     end
 
     # Check if the topic is nil, if so, create and save a new topic
     if @topic.nil?
       @topic = Topic.create(title: params[:subject], user_id: @user)
+      @topic.save
     end
 
     # Now that you're sure you have a valid user and topic, build and save a new bookmark
