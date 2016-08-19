@@ -15,7 +15,7 @@
     <div class = "col-md-4">
       <div class = 'panel panel-default'>
         <div class= 'panel-heading'>
-          <center><h3><strong>Log in</strong></h3></center><br />
+          <center><h4>Log in</h4></center>
         </div>
         <div class = 'panel-body'>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -33,7 +33,7 @@
               <div class = 'col-sm-8'>
                 <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
               </div>
-            </div>
+            </div><br />
 
             <% if devise_mapping.rememberable? -%>
               <div class="form-group">
@@ -44,12 +44,12 @@
                   </div>
               </div>
             <% end -%>
-            <br /><br /><br />
+            <br />
             <div class="actions">
-              <%= f.submit "Log in" , :class => 'btn btn-primary' %>
+              <center><%= f.submit "Log in" , :class => 'btn btn-primary' %></center>
             </div>
           <% end %>
-
+          <br />
           <%= render "devise/shared/links" %>
         </div>
       </div>

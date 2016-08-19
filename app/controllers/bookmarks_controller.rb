@@ -1,5 +1,8 @@
 class BookmarksController < ApplicationController
+  before_filter :authenticate_user!
+
   def show
+    authorize @bookmark
   end
 
   def new
@@ -39,6 +42,7 @@ class BookmarksController < ApplicationController
 
   def destroy
     @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
 
     if @bookmark.destroy
       flash[:notice] = "\"#{@bookmark.url}\" was deleted successfully."
