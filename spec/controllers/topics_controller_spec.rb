@@ -4,7 +4,7 @@ RSpec.describe TopicsController, type: :controller do
 
   context "user" do
     before do
-      @user = User.create!(email: 'member@example.com', password: 'helloworld', password_confirmation: 'helloworld')
+      @user = FactoryGirl.create(:user)
       @user.confirm
       sign_in @user
       @topic = Topic.create!(title: Faker::Lorem.word, user: @user)
@@ -110,8 +110,8 @@ RSpec.describe TopicsController, type: :controller do
 
   context "non-user" do
     before do
-      @user = User.create!(email: 'anothermember@example.com', password: 'helloworld', password_confirmation: 'helloworld')
-      @topic = Topic.create!(title: Faker::Lorem.word, user: @user)
+      @user = FactoryGirl.create(:user)
+      @topic = FactoryGirl.create(:topic)
     end
 
     describe "GET #index" do
