@@ -7,7 +7,6 @@
             # <%= link_to topic.title, topic %>
             <br />
           </h4>
-          <!-- unsure why bookmarks are not displaying -->
           <% if @bookmarks.present? %>
             <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic: topic } %>
           <% end %>

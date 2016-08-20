@@ -6,9 +6,10 @@ RSpec.describe Bookmark, type: :model do
   let(:title) { Faker::Lorem.word }
   let(:topic) { Topic.create!(title: title, user: user) }
   let(:url) { Faker::Internet.url }
-  let(:bookmark) { Bookmark.create!(url: url, topic: topic) }
+  let(:bookmark) { Bookmark.create!(url: url, topic: topic, user: user) }
 
   it {is_expected.to belong_to(:topic)}
+  it {is_expected.to belong_to(:user)}
 
   it { is_expected.to validate_presence_of(:url) }
   it { is_expected.to validate_presence_of(:topic) }

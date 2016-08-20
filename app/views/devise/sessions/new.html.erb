@@ -1,7 +1,7 @@
 <div class = 'container'>
   <div class = 'jumbotron', style="background: url('/images/bookmark_background.jpg')">
     <img src = '/images/MarkIt_logo.png'><br />
-    <p style = 'color: #ffffff'>Your premier location for bookmark management and sharing</p>
+    <p style = 'color: #ffffff'><strong>Your premier location for bookmark management and sharing</strong></p>
     <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-default' %>
   </div>
 
@@ -13,40 +13,43 @@
       <p>But you don't need to exclude your enemies</p>
     </div>
     <div class = "col-md-4">
-      <div class = 'well'>
-        <h2 style='text-align:center'>Log in</h2><br />
-        <div class = 'form-horizontal'>
+      <div class = 'panel panel-default'>
+        <div class= 'panel-heading'>
+          <center><h4>Log in</h4></center>
+        </div>
+        <div class = 'panel-body'>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-              <div class = 'col-md-4'>
-                <%= f.label :email %>&nbsp;&nbsp;
-              </div>
-              <div class = 'col-md-8'>
+            <div class="form-group">
+              <%= f.label :email, class: 'col-sm-4 control-label' %>
+              <div class = 'col-sm-8'>
                 <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
               </div>
             </div>
+
             <br /><br />
-            <div class="field pull-left">
-              <div class = 'col-md-4'>
-                <%= f.label :password %>&nbsp;&nbsp;
-              </div>
-              <div class = 'col-md-8'>
+
+            <div class="form-group">
+              <%= f.label :password, class: 'col-sm-4 control-label' %>
+              <div class = 'col-sm-8'>
                 <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
               </div>
-            </div>
+            </div><br />
 
             <% if devise_mapping.rememberable? -%>
-              <div class="field">
-                <%= f.check_box :remember_me %>&nbsp;
-                <%= f.label :remember_me %>
-              </div><br />
+              <div class="form-group">
+                <div class = 'col-sm-4'>&nbsp;</div>
+                  <div class = 'col-sm-8'>
+                    <%= f.check_box :remember_me %>&nbsp;
+                    <%= f.label :remember_me %>
+                  </div>
+              </div>
             <% end -%>
-
+            <br />
             <div class="actions">
-              <%= f.submit "Log in" , :class => 'btn btn-primary' %>
+              <center><%= f.submit "Log in" , :class => 'btn btn-primary' %></center>
             </div>
           <% end %>
-
+          <br />
           <%= render "devise/shared/links" %>
         </div>
       </div>

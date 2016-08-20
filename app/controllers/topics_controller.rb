@@ -1,27 +1,31 @@
 class TopicsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
-    @user = current_user
     @topics = Topic.all
     @bookmarks = Bookmark.all
   end
 
   def show
     @topic = Topic.find(params[:id])
+    authorize @topic
     @bookmarks = @topic.bookmarks
   end
 
   def new
     @topic = Topic.new
     @topic.user = current_user
+    authorize @topic
   end
 
   def edit
     @topic = Topic.find(params[:id])
+    authorize @topic
   end
 
   def create
     @topic = current_user.topics.build(topic_params)
+    authorize @topic
 
     if @topic.save
         flash[:notice] = "Topic was saved successfully."
@@ -35,6 +39,7 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     @topic.title = params[:topic][:title]
+    authorize @topic
 
     if @topic.save
       flash[:notice] = "Topic successfully updated"
@@ -47,6 +52,7 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
+    authorize @topic
 
     if @topic.destroy
       flash[:notice] = "\"#{@topic.title}\" was deleted successfully."
