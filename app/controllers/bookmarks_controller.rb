@@ -1,8 +1,9 @@
 class BookmarksController < ApplicationController
   before_action :authenticate_user!
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def show
-    @bookmark = Bookmark.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
   end
 
   def new
@@ -12,7 +13,7 @@ class BookmarksController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @bookmark = @topic.bookmarks.build(bookmark_params)
+    @bookmark = @topic.bookmarks.create(bookmark_params)
     @bookmark.user = current_user
 
     if @bookmark.save
@@ -36,7 +37,7 @@ class BookmarksController < ApplicationController
 
     if @bookmark.save
       flash[:notice] = "Bookmark was updated successfully."
-      redirect_to [@bookmark.topic]
+      redirect_to topic_path(@topic)
     else
       flash.now[:alert] = "There was an error saving the post. Please try again."
       render :edit
@@ -60,6 +61,11 @@ class BookmarksController < ApplicationController
   private
   def bookmark_params
     params.require(:bookmark).permit(:url)
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 
 end
