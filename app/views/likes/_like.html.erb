@@ -1,0 +1,9 @@
+  <% if like = current_user.liked(bookmark) %>
+    <%= link_to [bookmark, like], method: :delete do %>
+      <i class = 'glyphicon glyphicon-star'></i>&nbsp;
+    <% end %>
+  <% else %>
+    <%= link_to [bookmark, Like.new], method: :post do %>
+      <i class = 'glyphicon glyphicon-star-empty'></i>&nbsp;
+    <% end %>
+  <% end %>

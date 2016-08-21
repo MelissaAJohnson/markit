@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  get 'bookmarks/show'
-
-  get 'bookmarks/new'
-
-  get 'bookmarks/edit'
 
   devise_for :users
 
+  get 'bookmarks/show'
+
   resources :topics do
     resources :bookmarks, except: :index
+  end
+
+  resources :bookmarks, except: [:index] do
+    resources :likes, only: [:index, :create, :destroy]
   end
 
   root 'home#index'

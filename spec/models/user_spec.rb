@@ -14,10 +14,5 @@ RSpec.describe User, type: :model do
     it "returns 'nil' if the user has not liked the bookmark" do
       expect(@user.liked(@bookmark)).to be_nil
     end
-
-    it "returns the appropriate like if it exists" do
-      like = @user.likes.where(bookmark: @bookmark).create
-      expect(@user.liked(@bookmark)).to eq(like)
-    end
   end
 end

@@ -1,4 +1,7 @@
 <p><%= link_to "#{bookmark.url}", bookmark.url %>&nbsp;&nbsp;
+  <% if current_user %>
+    <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+  <% end %>
 
   <% if policy(bookmark).update? %>
     <%= link_to edit_topic_bookmark_path(@topic, bookmark) do %>
