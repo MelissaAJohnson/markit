@@ -11,6 +11,12 @@ User.create!(
   password: 'helloworld',
   confirmed_at: '2016-08-14'
 )
+
+User.create!(
+  email: 'user@markit.com',
+  password: 'helloworld',
+  confirmed_at: '2016-08-21'
+)
 users = User.all
 
 # Create Topics

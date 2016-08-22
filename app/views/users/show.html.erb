@@ -1,0 +1,17 @@
+<h2>My Bookmarks</h2>
+<div>
+  <% @user_bookmarks.each do |bookmark| %>
+    <h4><%= link_to bookmark.topic.title, topic_path(bookmark.topic) %></h4>
+    <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>
+  <% end %>
+</div>
+
+<h2>My Likes</h2>
+<div>
+  <% @liked_bookmarks.each do |bookmark| %>
+    <h4><%= link_to bookmark.topic.title, topic_path(bookmark.topic) %></h4>
+    <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>
+    <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+  <% end %>
+</div>
+<br />

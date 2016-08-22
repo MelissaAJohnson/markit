@@ -12,6 +12,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'listen'
   gem 'web-console', '~> 3.0'
+  gem 'meta_request'
 end
 
 gem 'sass-rails', '~> 5.0'
