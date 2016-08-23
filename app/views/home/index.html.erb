@@ -4,12 +4,13 @@
       <div class = 'col-md-8'>
         <% @topics.each do |topic| %>
           <h4>
-            # <%= link_to topic.title, topic %>
+            <strong># <%= link_to topic.title, topic_path(topic) %></strong>
             <br />
           </h4>
-          <% if @bookmarks.present? %>
-            <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic: topic } %>
+          <% topic.bookmarks.each do |bookmark| %>
+            <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %><br />
           <% end %>
+          <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic: topic } %>
         <% end %>
       </div>
     </div>

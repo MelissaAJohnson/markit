@@ -1,5 +1,5 @@
-class HomeController < ApplicationController  
+class HomeController < ApplicationController
   def index
-    @topics = Topic.all
+    @topics = Topic.all.sort_by{ |t| t.title}
   end
 end
