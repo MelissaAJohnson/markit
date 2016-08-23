@@ -9,7 +9,7 @@ class LikesController < ApplicationController
     if !like.save
       flash[:alert] = "Liking failed. Please contact administrator."
     end
-    redirect_to bookmark.topic
+    redirect_to :back
   end
 
   def destroy
@@ -22,6 +22,6 @@ class LikesController < ApplicationController
     if !like.destroy
       flash.now[:alert] = "There was an error un-liking that bookmark. Please try again."
     end
-    redirect_to bookmark.topic
+    redirect_to :back
   end
 end
