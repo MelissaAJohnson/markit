@@ -4,7 +4,7 @@
   <% end %>
 
   <% if policy(bookmark).update? %>
-    <%= link_to edit_topic_bookmark_path(@topic, bookmark) do %>
+    <%= link_to edit_topic_bookmark_path(bookmark.topic, bookmark) do %>
       <span style = "font-size: 11pt">
         <span class='has-tooltip' data-toggle='tooltip' title='Edit Bookmark'>
           <span class = 'glyphicon glyphicon-pencil'></span>
@@ -16,7 +16,7 @@
   &nbsp;
 
   <% if policy(bookmark).destroy? %>
-    <%= link_to [@topic, bookmark], method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+    <%= link_to [bookmark.topic, bookmark], method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
     <span style = "font-size: 11pt">
       <span class='has-tooltip' data-toggle='tooltip' title='Delete Bookmark'>
         <span class = 'glyphicon glyphicon-trash'></span>

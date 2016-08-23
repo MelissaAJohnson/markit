@@ -1,18 +1,32 @@
-<h2>My Bookmarks</h2>
-<div>
-<% @user_bookmarks.each do |topic, bookmark| %>
-    <h4><%= link_to topic.title, topic_path(topic) %></h4>
-    <% bookmark.each do |bookmark| %>
-      <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %><br />
-    <% end %>
-  <% end %>
-</div>
-
-<h2>My Likes</h2>
+<h2>My Favorites</h2>
 <div>
   <% @liked_bookmarks.each do |bookmark| %>
     <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>
     <%= render partial: 'likes/like', locals: { bookmark: bookmark } %><br />
   <% end %>
 </div>
-<br />
+
+<h2>My Bookmarks</h2>
+<div>
+<% @user_bookmarks.each do |topic, bookmark| %>
+    <h4><strong># <%= link_to topic.title, topic_path(topic) %></strong></h4>
+    <% bookmark.each do |bookmark| %>
+      <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>&nbsp;&nbsp;
+      <%= link_to edit_topic_bookmark_path(topic, bookmark) do %>
+        <span style = "font-size: 11pt">
+          <span class='has-tooltip' data-toggle='tooltip' title='Edit Bookmark'>
+            <span class = 'glyphicon glyphicon-pencil'></span>&nbsp;
+          </span>
+        </span>
+      <% end %>
+
+      <%= link_to [topic, bookmark], method: :delete, data: { confirm: 'Are you sure you want to delete this post?' } do %>
+      <span style = "font-size: 11pt">
+        <span class='has-tooltip' data-toggle='tooltip' title='Delete Bookmark'>
+          <span class = 'glyphicon glyphicon-trash'></span><br />
+        </span>
+      </span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

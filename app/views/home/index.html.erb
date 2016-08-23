@@ -7,10 +7,7 @@
             <strong># <%= link_to topic.title, topic_path(topic) %></strong>
             <br />
           </h4>
-          <% topic.bookmarks.each do |bookmark| %>
-            <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %><br />
-          <% end %>
-          <%= render partial: 'bookmarks/bookmark', collection: @bookmarks, locals: { topic: topic } %>
+          <%= render topic.bookmarks %>
         <% end %>
       </div>
     </div>
