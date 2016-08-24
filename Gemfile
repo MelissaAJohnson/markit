@@ -27,6 +27,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'pg'
 gem 'bootswatch-rails'
 gem 'pundit'
+gem 'embedly'
 
 group :development, :test do
   gem 'byebug'
