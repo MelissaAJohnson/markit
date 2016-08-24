@@ -4,9 +4,8 @@
       <%= display(bookmark.url) %>
         <div class = 'card-block'>
           <%= link_to page_title(bookmark.url), bookmark.url, target: '_blank' %>&nbsp;&nbsp;
-          <% if current_user.id != bookmark.user_id %>
-            <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
-          <% end %>
+          <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+
 
         <% if policy(bookmark).update? %>
           <%= link_to edit_topic_bookmark_path(bookmark.topic, bookmark) do %>

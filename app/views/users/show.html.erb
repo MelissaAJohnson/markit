@@ -16,6 +16,7 @@
     <h4><strong># <%= link_to topic.title, topic_path(topic) %></strong></h4>
     <% bookmark.each do |bookmark| %>
       <%= link_to page_title(bookmark.url), topic_bookmark_path(bookmark.topic, bookmark) %>&nbsp;&nbsp;
+      <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
       <%= link_to edit_topic_bookmark_path(topic, bookmark) do %>
         <span style = "font-size: 11pt">
           <span class='has-tooltip' data-toggle='tooltip' title='Edit Bookmark'>
