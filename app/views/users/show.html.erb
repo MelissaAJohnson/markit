@@ -1,9 +1,13 @@
 <h2>My Favorites</h2>
-<div>
+<div class='row'>
   <% @liked_bookmarks.each do |bookmark| %>
-    <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>
-    <%= render partial: 'likes/like', locals: { bookmark: bookmark } %><br />
+    <div class = 'card col-md-3'>
+      <%= link_to display(bookmark.url), topic_bookmark_path(bookmark.topic, bookmark) %><br />
+      <%= link_to page_title(bookmark.url), topic_bookmark_path(bookmark.topic, bookmark) %>
+      <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+    </div>
   <% end %>
+  &nbsp;&nbsp;&nbsp;
 </div>
 
 <h2>My Bookmarks</h2>
@@ -11,7 +15,7 @@
 <% @user_bookmarks.each do |topic, bookmark| %>
     <h4><strong># <%= link_to topic.title, topic_path(topic) %></strong></h4>
     <% bookmark.each do |bookmark| %>
-      <%= link_to "#{bookmark.url}", topic_bookmark_path(bookmark.topic, bookmark) %>&nbsp;&nbsp;
+      <%= link_to page_title(bookmark.url), topic_bookmark_path(bookmark.topic, bookmark) %>&nbsp;&nbsp;
       <%= link_to edit_topic_bookmark_path(topic, bookmark) do %>
         <span style = "font-size: 11pt">
           <span class='has-tooltip' data-toggle='tooltip' title='Edit Bookmark'>
@@ -30,3 +34,4 @@
     <% end %>
   <% end %>
 </div>
+<br /><br />

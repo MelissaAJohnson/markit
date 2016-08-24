@@ -20,24 +20,71 @@ User.create!(
 users = User.all
 
 # Create Topics
-5.times do
-  Topic.create!(
-    title: Faker::Lorem.word,
-    user: users.sample
-  )
-end
+Topic.create!(
+  title: 'funny',
+  user: users.sample
+)
+
+Topic.create!(
+  title: 'puppies',
+  user: users.sample
+)
+
+Topic.create!(
+  title: 'weddings',
+  user: users.sample
+)
 topics = Topic.all
 
-# Create Bookmarks
-15.times do
-  bookmark = Bookmark.create!(
-    user: users.sample,
-    topic: topics.sample,
-    url: Faker::Internet.url
-  )
-  bookmark.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-end
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 1,
+  url: 'http://dilbert.com/',
+  created_at: rand(10.minutes .. 1.year)
+)
+
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 1,
+  url: 'https://garfield.com/comic',
+  created_at: rand(10.minutes .. 1.year)
+)
+
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 2,
+  url: 'http://dogtime.com/puppies/255-puppies',
+  created_at: rand(10.minutes .. 1.year)
+)
+
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 2,
+  url: 'http://www.forbes.com/sites/kristintablang/2016/02/03/uber-puppies-super-bowl-puppy-bowl-xii/',
+  created_at: rand(10.minutes .. 1.year)
+)
+
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 2,
+  url: 'http://www.sheknows.com/pets-and-animals/articles/992643/25-puppies-to-make-your-heart-melt',
+  created_at: rand(10.minutes .. 1.year)
+)
+
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 3,
+  url: 'http://ginazeidler.com/2016/08/11/lightandfreshjjhillwedding/',
+  created_at: rand(10.minutes .. 1.year)
+)
+Bookmark.create!(
+  user: users.sample,
+  topic_id: 3,
+  url: 'https://www.theknot.com/',
+  created_at: rand(10.minutes .. 1.year)
+)
 bookmarks = Bookmark.all
 
+puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Bookmark.count} bookmarks created"
